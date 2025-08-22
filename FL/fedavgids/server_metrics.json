@@ -1,0 +1,81 @@
+[
+    {
+        "Starting New": "NN and FedAVG",
+        "round": 0,
+        "loss": 2.7419411153086273,
+        "centralized_loss": 2.7419411153086273,
+        "centralized_accuracy": 0.0028243448279516525,
+        "centralized_precision": 7.97692370717725e-06,
+        "centralized_recall": 0.0028243448279516525,
+        "centralized_f1_score": 1.590891515212627e-05,
+        "centralized_fpr": 0.06666666666666665,
+        "centralized_auc": 0.4227274812230187
+    },
+    {
+        "round": 1,
+        "loss": 2.7419411153086273,
+        "centralized_loss": 2.7419411153086273,
+        "centralized_accuracy": 0.0028243448279516525,
+        "centralized_precision": 7.97692370717725e-06,
+        "centralized_recall": 0.0028243448279516525,
+        "centralized_f1_score": 1.590891515212627e-05,
+        "centralized_fpr": 0.06666666666666665,
+        "centralized_auc": 0.4227274812230187
+    },
+    {
+        "round": 2,
+        "loss": 2.7419411153086273,
+        "centralized_loss": 2.7419411153086273,
+        "centralized_accuracy": 0.0028243448279516525,
+        "centralized_precision": 7.97692370717725e-06,
+        "centralized_recall": 0.0028243448279516525,
+        "centralized_f1_score": 1.590891515212627e-05,
+        "centralized_fpr": 0.06666666666666665,
+        "centralized_auc": 0.4227274812230187
+    },
+    {
+        "round": 3,
+        "loss": 2.7419411153086273,
+        "centralized_loss": 2.7419411153086273,
+        "centralized_accuracy": 0.0028243448279516525,
+        "centralized_precision": 7.97692370717725e-06,
+        "centralized_recall": 0.0028243448279516525,
+        "centralized_f1_score": 1.590891515212627e-05,
+        "centralized_fpr": 0.06666666666666665,
+        "centralized_auc": 0.4227274812230187
+    },
+    {
+        "Starting New": "NN and FedAVG",
+        "round": 0,
+        "loss": 2.6266353130340576,
+        "centralized_loss": 2.6266353130340576,
+        "centralized_accuracy": 0.0006853319532490564,
+        "centralized_precision": 0.8030448360582888,
+        "centralized_recall": 0.0006853319532490564,
+        "centralized_f1_score": 0.000903955726117073,
+        "centralized_fpr": 0.06663657578787922,
+        "centralized_auc": 0.5388006798108439
+    },
+    {
+        "round": 1,
+        "loss": 8.716537505765505,
+        "centralized_loss": 8.716537505765505,
+        "centralized_accuracy": 0.8030447814974503,
+        "centralized_precision": 0.6448809210902877,
+        "centralized_recall": 0.8030447814974503,
+        "centralized_f1_score": 0.7153243532362035,
+        "centralized_fpr": 0.06666666666666661,
+        "centralized_auc": 0.4961092909868889
+    },
+    {
+        "round": 2,
+        "loss": 6.2091598916010655,
+        "centralized_loss": 6.2091598916010655,
+        "centralized_accuracy": 0.8030447814974503,
+        "centralized_precision": 0.6448809210902877,
+        "centralized_recall": 0.8030447814974503,
+        "centralized_f1_score": 0.7153243532362035,
+        "centralized_fpr": 0.06666666666666661,
+        "centralized_auc": 0.5693646892034006
+    }
+]
