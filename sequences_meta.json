@@ -1,0 +1,26 @@
+{
+  "seq_len": 10,
+  "num_features": 20,
+  "feature_names": [
+    "sttl",
+    "ct_state_ttl",
+    "state",
+    "dur",
+    "dload",
+    "sload",
+    "dmean",
+    "sinpkt",
+    "ct_dst_sport_ltm",
+    "spkts",
+    "rate",
+    "sloss",
+    "dpkts",
+    "ct_src_dport_ltm",
+    "sbytes",
+    "dloss",
+    "dbytes",
+    "smean",
+    "proto",
+    "ct_dst_src_ltm"
+  ]
+}
