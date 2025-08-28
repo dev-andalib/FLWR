@@ -1,20 +1,53 @@
-Federated Intrusion Detection System with Flower and Simulated Annealing
-This repository contains the implementation of a robust, decentralized Intrusion Detection System (IDS) that leverages the power of Federated Learning (FL). The system is built using the Flower (flwr) framework to manage the distributed learning process.
+<div align="center">
 
-This project explores multiple advanced strategies, including a novel optimization technique using Simulated Annealing to accelerate model convergence, and a Hierarchical Model that performs a two-stage classification for more granular threat analysis.
+🛡️ Federated Intrusion Detection System 🛡️
+with Flower, Simulated Annealing & Hierarchical Models
+</div>
+
+<p align="center">
+<img alt="Python" src="https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python">
+<img alt="Framework" src="https://img.shields.io/badge/Framework-Flower-orange?style=for-the-badge">
+<img alt="License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
+<img alt="Status" src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge">
+</p>
+
+This repository contains the implementation of a robust, decentralized Intrusion Detection System (IDS) that leverages the power of Federated Learning (FL). The system is built using the Flower (flwr) framework and explores multiple advanced strategies for efficient and accurate threat detection without compromising data privacy.
+
+📚 Table of Contents
+Key Features
+
+How It Works
+
+Standard Federated Learning
+
+Federated Learning with Simulated Annealing
+
+Hierarchical Federated Learning
+
+System Architecture
+
+Getting Started
+
+Usage
+
+Results and Evaluation
+
+Contributing
+
+License
 
 🚀 Key Features
-Decentralized Learning: Trains a global IDS model on distributed data sources without centralizing sensitive network traffic data, ensuring data privacy and security.
+🏡 Decentralized Learning: Trains a global IDS model on distributed data sources without centralizing sensitive network traffic data, ensuring data privacy and security.
 
-Robust Threat Detection: By aggregating insights from multiple networks, the model learns to identify a wider and more diverse range of cyber threats.
+🔎 Robust Threat Detection: By aggregating insights from multiple networks, the model learns to identify a wider and more diverse range of cyber threats.
 
-Flower Framework: Utilizes the accessible and powerful Flower framework to implement the federated learning server and clients with ease.
+🌸 Flower Framework: Utilizes the accessible and powerful Flower framework to implement the federated learning server and clients with ease.
 
-Simulated Annealing for Faster Convergence: Implements a custom federated averaging strategy that incorporates the principles of Simulated Annealing. This allows the model to converge more quickly by making it more exploratory at the beginning of the training process.
+🔥 Simulated Annealing for Faster Convergence: Implements a custom federated averaging strategy that incorporates the principles of Simulated Annealing to accelerate model convergence and avoid local minima.
 
-Hierarchical Model: Implements a two-stage classification pipeline, first identifying threats (binary classification) and then categorizing them (multi-class classification) for more detailed and efficient analysis.
+ιε Hierarchical Model: Implements a two-stage classification pipeline, first identifying threats (binary classification) and then categorizing them (multi-class classification) for more detailed and efficient analysis.
 
-Scalable Architecture: The system is designed to be scalable, allowing for the addition of new clients with minimal overhead.
+📈 Scalable Architecture: The system is designed to be scalable, allowing for the addition of new clients with minimal overhead.
 
 ⚙️ How It Works
 The project explores three primary approaches for training the federated IDS.
@@ -24,7 +57,7 @@ In the standard setup, we use the FedAvg strategy provided by Flower. The proces
 
 Initialization: A central server initializes a global model and sends it to a random subset of clients.
 
-Local Training: Each selected client trains the model on its local intrusion detection dataset for a few epochs.
+Local Training: Each selected client trains the model on its local intrusion detection dataset.
 
 Model Aggregation: The clients send their updated model weights back to the server.
 
@@ -35,59 +68,54 @@ Iteration: This process is repeated for a set number of rounds until the global 
 2. Federated Learning with Simulated Annealing
 This approach modifies the server-side aggregation strategy to speed up convergence. The core idea is to treat the federated learning process as an optimization problem where we are trying to find the best set of global model weights.
 
-The key difference lies in the aggregation step:
+Initial High Temperature: At the beginning of training, a "temperature" is set high. In this state, the server is more likely to accept model updates from clients, even if they temporarily decrease the global model's accuracy. This exploratory behavior helps the model escape local minima.
 
-Initial High Temperature: At the beginning of the training, a "temperature" variable is set to a high value. In this state, the server is more likely to accept model updates from clients, even if they temporarily decrease the global model's accuracy. This exploratory behavior helps the model escape local minima.
+Probabilistic Acceptance: The decision to accept a "worse" set of aggregated weights is probabilistic and depends on the current temperature.
 
-Probabilistic Acceptance: The decision to accept a "worse" set of aggregated weights is probabilistic and depends on the current temperature and how much worse the new model is.
+Cooling Schedule: As training progresses, the temperature is gradually decreased.
 
-Cooling Schedule: As the training rounds progress, the temperature is gradually decreased according to a cooling schedule.
-
-Final Convergence: In the later stages of training, when the temperature is low, the server becomes highly selective and only accepts model updates that result in a clear improvement. This ensures that the model stabilizes and converges to a high-quality solution.
+Final Convergence: In later stages, when the temperature is low, the server becomes highly selective and only accepts model updates that result in a clear improvement, ensuring convergence to a high-quality solution.
 
 3. Hierarchical Federated Learning (HFL)
-This implementation uses a two-stage approach to first detect the presence of an intrusion and then classify the specific type of attack. This hierarchical structure can lead to better performance and more efficient resource usage.
+This implementation uses a two-stage approach to first detect the presence of an intrusion and then classify the specific type of attack.
 
 Stage 1: Binary Classification (Anomaly Detection):
 
-A primary global model is trained using federated learning (either FedAvg or with Simulated Annealing).
-
-The goal of this model is simple: to classify network traffic as either 'Normal' or 'Attack'. This acts as a high-level filter.
+A primary global model is trained to classify network traffic as either 'Normal' or 'Attack'. This acts as a high-level filter.
 
 Stage 2: Multi-Class Classification (Attack Categorization):
 
-If a piece of traffic is classified as 'Attack' by the first model, it is then passed to a second, more specialized global model.
+Traffic flagged as 'Attack' is passed to a second, more specialized global model.
 
-This second model is also trained using federated learning but on a dataset that only contains attack instances.
+This second model is trained only on attack instances to perform multi-class classification (e.g., DDoS, PortScan, Malware).
 
-Its purpose is to perform multi-class classification to determine the specific category of the attack (e.g., DDoS, PortScan, Malware, WebAttack).
-
-This method allows the first model to be lightweight and fast for general traffic, while the second, more complex model is only engaged when a potential threat is detected.
+This method allows the first model to be lightweight and fast, while the second, more complex model is only engaged when a potential threat is detected.
 
 🏛️ System Architecture
-The architecture consists of a central server and multiple distributed clients.
+The architecture consists of a central server that orchestrates the learning process and multiple distributed clients that hold the data.
 
-Central Server (Aggregator):
+graph TD
+    subgraph Federated Learning Network
+        Server(🌸 Central Server <br> Aggregator + Strategy Manager)
+        subgraph Distributed Clients
+            Client1(📱 Client 1 <br> Local Data)
+            Client2(💻 Client 2 <br> Local Data)
+            ClientN(🌐 Client N <br> Local Data)
+        end
+    end
 
-Orchestrates the entire federated learning process.
+    Server -- "1. Send Global Model" --> Client1
+    Server -- "1. Send Global Model" --> Client2
+    Server -- "1. Send Global Model" --> ClientN
 
-Initializes the global model(s).
+    Client1 -- "2. Return Trained Weights" --> Server
+    Client2 -- "2. Return Trained Weights" --> Server
+    ClientN -- "2. Return Trained Weights" --> Server
 
-Selects clients for each training round.
-
-Aggregates model updates using one of the available strategies.
-
-Evaluates the performance of the global model(s).
-
-Clients (Data Nodes):
-
-Represent individual organizations or networks where intrusion detection data is generated.
-
-Each client holds its own private dataset.
-
-Receives the global model(s) from the server, trains it on local data, and sends the updated weights back.
-
-<img width="870" height="287" alt="image" src="https://github.com/user-attachments/assets/797efb5c-06be-459d-a41c-19155786592a" />
+    style Server fill:#f9f,stroke:#333,stroke-width:2px
+    style Client1 fill:#bbf,stroke:#333,stroke-width:2px
+    style Client2 fill:#bbf,stroke:#333,stroke-width:2px
+    style ClientN fill:#bbf,stroke:#333,stroke-width:2px
 
 🛠️ Getting Started
 Follow these instructions to get the project up and running on your local machine.
@@ -103,7 +131,7 @@ Clone the repository:
 git clone https://github.com/your-username/federated-ids.git
 cd federated-ids
 
-Create a virtual environment (recommended):
+Create and activate a virtual environment:
 
 python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
@@ -147,18 +175,14 @@ python client.py --client-id=1
 # Open another terminal and start the second client
 python client.py --client-id=2
 
-The clients will connect to the server and begin the federated training process.
-
 📊 Results and Evaluation
-The effectiveness of the system is evaluated based on the following metrics:
+The effectiveness of the system is evaluated based on:
 
-Model Accuracy: The final accuracy of the global model on a held-out test set. For the hierarchical model, this will include accuracy for both the binary and multi-class models.
+Model Accuracy: The final accuracy of the global model(s) on a held-out test set.
 
-Convergence Speed: The number of communication rounds required to reach a target accuracy level. We expect the Simulated Annealing approach to converge significantly faster than standard FedAvg.
+Convergence Speed: The number of communication rounds required to reach a target accuracy level.
 
 Privacy: By design, the system ensures that raw data never leaves the client's premises.
-
-After running the simulation, you can analyze the logs and generated plots to compare the performance of the different strategies and models.
 
 🤝 Contributing
 Contributions are welcome! If you have ideas for improvements or find any issues, please open an issue or submit a pull request.
@@ -175,4 +199,3 @@ Open a Pull Request.
 
 📄 License
 This project is distributed under the MIT License. See LICENSE for more information.
-
