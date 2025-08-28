@@ -106,13 +106,13 @@ graph TD
    python client.py --client-id 2
 # Add more clients as needed
 
-##📊 Evaluation Metrics
+## 📊 Evaluation Metrics
 
 Accuracy — Measured on a held-out test set across multiple clients.
 Convergence Speed — Number of communication rounds to reach target accuracy.
 Privacy — No raw data is shared between clients or with the server.
 
-##🧪 Example Use Case
+## 🧪 Example Use Case
 
 Imagine a global network of intrusion detection sensors deployed across enterprise data centers. With this system:
 Each data center trains on its own traffic logs.
@@ -120,7 +120,7 @@ No logs leave the site.
 The central server aggregates only model updates.
 Together, they collaboratively train a global intrusion detection model.
 
-##🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome!
 
