@@ -28,7 +28,7 @@ Stage 2: Multi-class classifier categorizes attack type.
 📈 Scalable & Modular Design
 Add new clients with minimal setup. Compatible with both TensorFlow and PyTorch.
 
-##🧠 How It Works
+## 🧠 How It Works
 
 This system supports three federated learning strategies:
 
